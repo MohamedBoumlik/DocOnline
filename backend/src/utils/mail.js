@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer')
 const hbs = require('nodemailer-express-handlebars')
 
-const billMail = async (email, name , bill ) => {
+const PasswordMail = async (email, name , password ) => {
   try {
     let mailTransporter = nodemailer.createTransport({
       service: 'gmail',
@@ -24,15 +24,15 @@ const billMail = async (email, name , bill ) => {
     let mailDetails = {
       from: process.env.EMAIL,
       to: `${email}`,
-      subject: 'Bill payment',
+      subject: 'New password',
       template: 'password',
       context: {
         name: name,
-        bill:bill,
+        password:password,
       },
     }
     
-    mailTransporter.billMail(mailDetails, function (err, data) {
+    mailTransporter.sendMail(mailDetails, function (err, data) {
       if (err) {
         console.log('Error Occurs', err)
       }else {
@@ -44,4 +44,4 @@ const billMail = async (email, name , bill ) => {
   }
 }
 
-module.exports = {billMail}
+module.exports = {PasswordMail}

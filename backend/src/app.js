@@ -28,6 +28,18 @@ mongoose.connect(
 
 );
 
+// ------------------------ Admin routes ------------------------
+
+const admin = require('./routes/admin.routes')
+app.use('/api/admin',admin)
+
+// ------------------------ Admin routes ------------------------
+
+const assitent = require('./routes/Assistent.routes')
+app.use('/api/assistent',assitent)
+
+// ------------------------ Port ------------------------
+
 app.listen(process.env.PORT, () => {
     console.log(`up and running at http://localhost:${process.env.PORT}`);
 })
