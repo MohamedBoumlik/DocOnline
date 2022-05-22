@@ -79,11 +79,11 @@ function Navbar() {
                       }
                   </ul>
               </div>
-              <div className="hidden md:inline-block">
+              {/* <div className="hidden md:inline-block">
                 <a href="#" className="py-3 px-4 text-white bg-blue-800 hover:bg-blue-500 rounded-md shadow">
                     Get Started
                 </a>
-              </div>
+              </div> */}
           </div>
         </nav>
         
