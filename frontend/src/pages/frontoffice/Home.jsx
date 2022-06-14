@@ -1,4 +1,4 @@
-import Navbar from "./Navbar";
+import Navbar from "../../components/frontoffice/Navbar";
 import "../../style/style.css";
 import { FaPills, FaRegClock, FaHeadset, FaPhoneAlt } from "react-icons/fa";
 import Image from '../../images/img-3.jpg'

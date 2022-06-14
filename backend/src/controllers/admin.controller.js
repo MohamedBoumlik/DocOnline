@@ -23,7 +23,7 @@ exports.authenticate = async(req, res) => {
             }
         );
         
-        res.status(200).send({token, id:foundAdmin._id, email:foundAdmin.email, password:foundAdmin.password, message: "You logged in successfully"});
+        res.status(200).send({token, id:foundAdmin._id, email:foundAdmin.email, password:foundAdmin.password, role:"admin", message: "You logged in successfully"});
     }
 
 }
