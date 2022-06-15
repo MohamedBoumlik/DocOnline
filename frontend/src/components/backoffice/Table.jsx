@@ -4,8 +4,10 @@ import { BsFillTrashFill } from "react-icons/bs";
 
 function Table() {
   const [data, setData] = useState([]);
-  const [name,setName] = useState('');
-  const [email,setEmail] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+
+  // ------------------ fetch data ------------------
 
   const getData = () => {
     axios
@@ -14,13 +16,36 @@ function Table() {
       .catch((err) => console.log(err));
   };
 
+  // ------------------ post ------------------
+
+  const postData = () => {
+    axios
+      .post("http://localhost:4000/api/assistent/add_assistent", {
+        name: name,
+        email: email,
+      })
+      .then((res) => getData())
+      .catch((err) => console.log(err));
+  };
+
+  // ------------------ delete ------------------
+
+  const delete_row = (id) => {
+    if (window.confirm("Are you sure you want to delete this Assistent ?")) {
+      axios
+        .delete(`http://localhost:4000/api/assistent/delete/${id}`)
+        .then((res) => getData())
+        .catch((err) => console.log(err));
+    }
+  };
+
   useEffect(() => {
     getData();
   }, []);
 
   return (
     <div>
-      {/* ------------------------------- Form ------------------------------- */}
+      {/* -------------------------------Add assistent's Form ------------------------------- */}
 
       <div class="bg-white shadow rounded-lg p-6 mx-5">
         <div class="grid lg:grid-cols-2 gap-6">
@@ -68,6 +93,7 @@ function Table() {
 
         <div class="border-t mt-6 pt-3 text-center">
           <button
+            onClick={postData}
             class="bg-blue-700 hover:bg-blue-400 text-white text-sm px-20 py-3 hover:text-blue-900 border rounded-full text-base"
             type="submit"
           >
@@ -118,9 +144,8 @@ function Table() {
                           {el.email}
                         </td>
                         <td className="text-center py-4 px-6 text-sm text-black-500 whitespace-nowrap dark:text-black-400">
-                          <button className="text-red-600	text-xl">
-                            {" "}
-                            <BsFillTrashFill />{" "}
+                          <button className="text-red-600	text-xl" onClick={()=>delete_row(el._id)}>
+                            <BsFillTrashFill />
                           </button>
                         </td>
                       </tr>

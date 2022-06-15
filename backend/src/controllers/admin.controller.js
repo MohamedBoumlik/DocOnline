@@ -1,5 +1,5 @@
 const Admin = require('../models/Admin');
-const jwt = require('jsonwebtoken');
+var jwt = require('jsonwebtoken');
 
 // -------------------------- authenticate --------------------------
 
