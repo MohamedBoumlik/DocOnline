@@ -33,10 +33,15 @@ mongoose.connect(
 const admin = require('./routes/admin.routes')
 app.use('/api/admin',admin)
 
-// ------------------------ Admin routes ------------------------
+// ------------------------ Assistent routes ------------------------
 
 const assitent = require('./routes/Assistent.routes')
 app.use('/api/assistent',assitent)
+
+// ------------------------ Appointments routes ------------------------
+
+const RDV = require('./routes/appointment.routes')
+app.use('/api/Appointment',RDV)
 
 // ------------------------ Port ------------------------
 

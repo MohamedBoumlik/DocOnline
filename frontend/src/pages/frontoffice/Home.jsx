@@ -254,14 +254,11 @@ function Home() {
                           class="form-control"
                           id="exampleFormControlSelect2"
                         >
-                          <option>Select Doctors</option>
-                          <option>Software Design</option>
-                          <option>Development cycle</option>
-                          <option>Software Development</option>
-                          <option>Maintenance</option>
-                          <option>Process Query</option>
-                          <option>Cost and Duration</option>
-                          <option>Modal Delivery</option>
+                          <option>Choose a Doctor</option>
+                          <option>Doctor 1</option>
+                          <option>Doctor 2</option>
+                          <option>Doctor 3</option>
+                          <option>Doctor 4</option>
                         </select>
                       </div>
                     </div>
@@ -280,13 +277,18 @@ function Home() {
 
                     <div class="col-lg-6">
                       <div class="form-group mt-2">
-                        <input
-                          name="time"
-                          id="time"
-                          type="time"
-                          class="form-control"
-                          placeholder="Time"
-                        />
+                        <select
+                            class="form-control"
+                            id="exampleFormControlSelect2"
+                          >
+                            <option>Choose a Time</option>
+                            <option>9-10</option>
+                            <option>10-11</option>
+                            <option>11-12</option>
+                            <option>14-15</option>
+                            <option>15-16</option>
+                            <option>16-17</option>
+                          </select>
                       </div>
                     </div>
                     <div class="col-lg-6">

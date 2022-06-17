@@ -5,10 +5,9 @@ function Navbar() {
     const [state, setState] = useState(false)
 
     const navigation = [
-        { title: "Customers", path: "#" },
-        { title: "Careers", path: "#" },
-        { title: "Guides", path: "#" },
-        { title: "Partners", path: "#" }
+        { title: "Appointments", path: "#" },
+        { title: "About", path: "#" },
+        { title: "Contact", path: "#" },
     ]
 
   return (
