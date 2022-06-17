@@ -1,9 +1,12 @@
 const RDV = require("../models/Appointment");
+const dayjs = require('dayjs');
+
 // -------------------------- Create Appointments --------------------------
 
 exports.createAppointments = async (req, res) => {
-  const { patient_Name, patient_CIN, date, hour, tel, } = req.body;
+  const { patient_Name, patient_CIN, date, hour, tel, patient_Email } = req.body;
   const allAppointments = await RDV.find();
+  let formatedDate = dayjs(date).format('YYYY-MM-DD');
 
   try {
     const appointmentFound = allAppointments.find(
@@ -16,9 +19,11 @@ exports.createAppointments = async (req, res) => {
     const newAppointment = await RDV.create({
       patient_Name,
       patient_CIN,
+      patient_Email,
       date,
-      hour,
+      formatedDate,
       tel,
+      hour,
     });
 
     res.status(200).json({ newAppointment });

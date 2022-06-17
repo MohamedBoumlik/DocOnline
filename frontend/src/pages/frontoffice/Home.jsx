@@ -1,12 +1,39 @@
 import Navbar from "../../components/frontoffice/Navbar";
 import "../../style/style.css";
 import { FaPills, FaRegClock, FaHeadset, FaPhoneAlt } from "react-icons/fa";
-import Image from '../../images/img-3.jpg'
+import Image from "../../images/img-3.jpg";
+import { useState } from "react";
+import axios from "axios";
 
 function Home() {
+  const [name, setName] = useState("");
+  const [CIN, setCIN] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [date, setDate] = useState("");
+  const [hour, setHour] = useState("");
+
+  // -------------- post data to server --------------
+  const info = {
+    patient_Name: name,
+    patient_CIN: CIN,
+    patient_Email: email,
+    date: date,
+    hour: hour,
+    tel: phone,
+  };
+
+  const postData = () => {
+    axios.post("http://localhost:4000/api/Appointment/",info)
+    .then(res => console.log(res.data))
+    .catch(err => console.warn(err));
+  };
+
   return (
     <div>
       <Navbar />
+
+      {/* ---------------------------- Header ---------------------------- */}
 
       <section class="banner w-full h-screen p-10">
         <div class="container">
@@ -39,10 +66,9 @@ function Home() {
         </div>
       </section>
 
+      {/* ---------------------------- Features ---------------------------- */}
+
       <section class="features">
-        {/* <div class="container">
-          <div class="row"> */}
-        {/* <div class="grid grid-cols-4 gap-4"> */}
         <div class="feature-block flex z-40 grid lg:grid-cols-3 md:grid-cols-2 sm:grid:cols-1 gap-4 px-7">
           <div class="feature-item mb-5 mb-lg-0">
             <div class="feature-icon mb-4">
@@ -91,10 +117,9 @@ function Home() {
             </p>
           </div>
         </div>
-        {/* </div> */}
-        {/* </div>
-        </div> */}
       </section>
+
+      {/* ---------------------------- Specialities ---------------------------- */}
 
       <section class="section service gray-bg">
         <div class="container">
@@ -208,6 +233,8 @@ function Home() {
         </div>
       </section>
 
+      {/* ---------------------------- Appointment ---------------------------- */}
+
       <section class="section appoinment">
         <div class="container">
           <div class="row align-items-center p-10">
@@ -216,7 +243,8 @@ function Home() {
                 <img src={Image} alt="Doctor" className="img-fluid" />
                 <div class="emergency">
                   <h2 className="text-lg flex ">
-                    <FaPhoneAlt style={{color:'#fff', fontSize:'60px'}}/><p className="mt-3 ml-2">+23 345 67980</p>
+                    <FaPhoneAlt style={{ color: "#fff", fontSize: "60px" }} />
+                    <p className="mt-3 ml-2">+23 345 67980</p>
                   </h2>
                 </div>
               </div>
@@ -229,7 +257,7 @@ function Home() {
                   asperiores corrupti qui velit . Iste dolorum atque similique
                   praesentium soluta.
                 </p>
-                <div class="appoinment-form" >
+                <div class="appoinment-form">
                   <div class="row">
                     <div class="col-lg-6">
                       <div class="form-group mt-2">
@@ -237,14 +265,14 @@ function Home() {
                           class="form-control"
                           id="exampleFormControlSelect1"
                         >
-                          <option>Choose Department</option>
-                          <option>Software Design</option>
-                          <option>Development cycle</option>
-                          <option>Software Development</option>
-                          <option>Maintenance</option>
-                          <option>Process Query</option>
-                          <option>Cost and Duration</option>
-                          <option>Modal Delivery</option>
+                          <option>Choose Speciality</option>
+                          <option>Neurology Sargery</option>
+                          <option>Dermatology</option>
+                          <option>Gynecology</option>
+                          <option>Diagnostic radiology</option>
+                          <option>Nuclear medicine</option>
+                          <option>Pediatrics</option>
+                          <option>Sports medicine and rehabilitation</option>
                         </select>
                       </div>
                     </div>
@@ -271,6 +299,7 @@ function Home() {
                           type="Date"
                           class="form-control"
                           placeholder="dd/mm/yyyy"
+                          onChange={(e) => setDate(e.target.value)}
                         />
                       </div>
                     </div>
@@ -278,17 +307,18 @@ function Home() {
                     <div class="col-lg-6">
                       <div class="form-group mt-2">
                         <select
-                            class="form-control"
-                            id="exampleFormControlSelect2"
-                          >
-                            <option>Choose a Time</option>
-                            <option>9-10</option>
-                            <option>10-11</option>
-                            <option>11-12</option>
-                            <option>14-15</option>
-                            <option>15-16</option>
-                            <option>16-17</option>
-                          </select>
+                          class="form-control"
+                          id="exampleFormControlSelect2"
+                          onChange={(e) => setHour(e.target.value)}
+                        >
+                          <option>Choose a Time</option>
+                          <option>9-10</option>
+                          <option>10-11</option>
+                          <option>11-12</option>
+                          <option>14-15</option>
+                          <option>15-16</option>
+                          <option>16-17</option>
+                        </select>
                       </div>
                     </div>
                     <div class="col-lg-6">
@@ -299,6 +329,7 @@ function Home() {
                           type="text"
                           class="form-control"
                           placeholder="Full Name"
+                          onChange={(e) => setName(e.target.value)}
                         />
                       </div>
                     </div>
@@ -311,6 +342,7 @@ function Home() {
                           type="text"
                           class="form-control"
                           placeholder="Cin"
+                          onChange={(e) => setCIN(e.target.value)}
                         />
                       </div>
                     </div>
@@ -323,6 +355,7 @@ function Home() {
                           type="email"
                           class="form-control"
                           placeholder="Full Email"
+                          onChange={(e) => setEmail(e.target.value)}
                         />
                       </div>
                     </div>
@@ -335,6 +368,7 @@ function Home() {
                           type="Number"
                           class="form-control"
                           placeholder="Phone Number"
+                          onChange={(e) => setPhone(e.target.value)}
                         />
                       </div>
                     </div>
@@ -349,9 +383,13 @@ function Home() {
                     ></textarea>
                   </div>
 
-                  <a class="btn btn-main btn-round-full" href="appoinment.html">
+                  <button
+                    class="btn btn-main btn-round-full"
+                    href="appoinment.html"
+                    onClick={() => postData()}
+                  >
                     Make Appoinment
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
